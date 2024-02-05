@@ -1,6 +1,7 @@
 package javaBasic;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 public class Topic_06_Condition_Exercise {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
+	Scanner scanner = new Scanner(System.in);
 
 	// @Test
 	public void TC_01_If() {
@@ -89,7 +91,7 @@ public class Topic_06_Condition_Exercise {
 		driver.quit();
 	}
 
-	@Test
+	//@Test
 	public void TC_04_If_Else_IF_Else() {
 		// Page Object
 		// Dynamic
@@ -111,10 +113,21 @@ public class Topic_06_Condition_Exercise {
 			// HomePage homePage = new HomePage();
 			// return homePage;
 		}
-		
-		int age = 20;
-		String access = (age <18)?"Yo can not access":"Welcome to system";
 
+		int age = 20;
+		String access = (age < 18) ? "Yo can not access" : "Welcome to system";
+
+	}
+
+	@Test
+	public void TC_05() {
+		int month = scanner.nextInt();
+		if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+			System.out.println("Tháng này có 30 ngày");
+		} else if (month == 2) {
+			System.out.println("Tháng này có 28 hoặc 29 ngày");
+		} else if (month == 4 || month == 6 || month == 9 || month == 11)
+			System.out.println("Tháng này có 30 ngày");
 	}
 
 	public static void main(String[] args) {
