@@ -18,8 +18,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-	// Web Browser
-	public void getUrl(WebDriver driver, String url) {
+	public static BasePage getBasePage() {
+		return new BasePage();
+	}
+
+	public void openUrl(WebDriver driver, String url) {
 		driver.get(url);
 	}
 
@@ -48,7 +51,7 @@ public class BasePage {
 	}
 
 	public Alert waitForAlertPresent(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		return explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -98,7 +101,7 @@ public class BasePage {
 			}
 		}
 		driver.switchTo().window(parentPageID);
-		sleepInSecond(3);
+		sleepInMilisecond(500);
 	}
 
 	public void sleepInSecond(long timeoutInSecond) {
@@ -109,7 +112,13 @@ public class BasePage {
 		}
 	}
 
-	// Web Element
+	public void sleepInMilisecond(long timeoutInMilisecond) {
+		try {
+			Thread.sleep(timeoutInMilisecond * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public By getByXpath(String xpathExpression) {
 		return By.xpath(xpathExpression);
@@ -144,7 +153,7 @@ public class BasePage {
 		getWebElement(driver, parentLocator).click();
 		sleepInSecond(1);
 
-		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
 
 		for (WebElement item : allItems) {
@@ -270,7 +279,7 @@ public class BasePage {
 	}
 
 	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply(WebDriver driver) {
@@ -304,19 +313,25 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String xpathExpression) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(xpathExpression)));
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(xpathExpression)));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String xpathExpression) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(xpathExpression)));
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(xpathExpression)));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String xpathExpression) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeSelected(getByXpath(xpathExpression)));
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.elementToBeSelected(getByXpath(xpathExpression)));
 	}
 
 	public void waitForAllElementVisible(WebDriver driver, String xpathExpression) {
-
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(xpathExpression)));
 	}
+
+	public void waitForAllElementInvisible(WebDriver driver, String xpathExpression) {
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.invisibilityOfAllElements(getWebElements(driver, xpathExpression)));
+	}
+
+	private long longTimeout = 30;
 
 }
