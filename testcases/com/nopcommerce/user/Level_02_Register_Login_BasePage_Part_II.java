@@ -62,7 +62,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 		basePage.sendkeyToElement(driver, "//input[@id='FirstName']", "Automation");
 		basePage.sendkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.sendkeyToElement(driver, "//input[@id='Email']", "emailAddress");
+		basePage.sendkeyToElement(driver, "//input[@id='Email']", emailAddress);
 		basePage.sendkeyToElement(driver, "//input[@id='Password']", "123456");
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
@@ -78,7 +78,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 		basePage.sendkeyToElement(driver, "//input[@id='FirstName']", "Automation");
 		basePage.sendkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.sendkeyToElement(driver, "//input[@id='Email']", "emailAddress");
+		basePage.sendkeyToElement(driver, "//input[@id='Email']", emailAddress);
 		basePage.sendkeyToElement(driver, "//input[@id='Password']", "123456");
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
@@ -92,7 +92,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 		basePage.sendkeyToElement(driver, "//input[@id='FirstName']", "Automation");
 		basePage.sendkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.sendkeyToElement(driver, "//input[@id='Email']", "emailAddress");
+		basePage.sendkeyToElement(driver, "//input[@id='Email']", emailAddress);
 		basePage.sendkeyToElement(driver, "//input[@id='Password']", "123");
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
@@ -106,7 +106,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 		basePage.sendkeyToElement(driver, "//input[@id='FirstName']", "Automation");
 		basePage.sendkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.sendkeyToElement(driver, "//input[@id='Email']", "emailAddress");
+		basePage.sendkeyToElement(driver, "//input[@id='Email']", emailAddress);
 		basePage.sendkeyToElement(driver, "//input[@id='Password']", "12345678");
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "87654321");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
