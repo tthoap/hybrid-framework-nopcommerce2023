@@ -72,7 +72,7 @@ public class Level_02_Register_Login_BasePage_Part_I {
 		Assert.assertEquals(basePage.getElementText(driver, "//div[@class='result']"), "Your registration completed");
 
 		basePage.waitForElementClickable(driver, "//a[@class='ico-logout']");
-		// basePage.clickToElement(driver, "//a[@class='ico-logout']");
+		basePage.clickToElement(driver, "//a[@class='ico-logout']");
 	}
 
 	@Test
