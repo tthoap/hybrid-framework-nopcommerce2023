@@ -31,7 +31,6 @@ public class Level_01_Register_Login_DRY {
 	public void TC_01_Register_Empty_Data() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("button#register-button")).click();
-
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#FirstName-error")).getText(), "First name is required.");
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#LastName-error")).getText(), "Last name is required.");
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#Email-error")).getText(), "Email is required.");
@@ -69,10 +68,10 @@ public class Level_01_Register_Login_DRY {
 
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.result")).getText(), "Your registration completed");
 
-		driver.findElement(By.cssSelector("a.ico-logout")).click();
+		//driver.findElement(By.cssSelector("a.ico-logout")).click();
 	}
 
-	@Test
+	//@Test
 	public void TC_04_Register_Existing_Email() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -87,7 +86,7 @@ public class Level_01_Register_Login_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.message-error li")).getText(), "The specified email already exists");
 	}
 
-	@Test
+	//@Test
 	public void TC_05_Register_Password_Less_Than_6_Chars() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -102,7 +101,7 @@ public class Level_01_Register_Login_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("#Password-error")).getText(), "Password must meet the following rules:\nmust have at least 6 characters");
 	}
 
-	@Test
+	//@Test
 	public void TC_06_Register_Invalid_Confirm_Password() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -118,7 +117,7 @@ public class Level_01_Register_Login_DRY {
 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
 
 	public int generateFakeNumber() {

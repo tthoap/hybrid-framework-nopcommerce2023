@@ -281,7 +281,6 @@ public class BasePage {
 	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
-			@Override
 			public Boolean apply(WebDriver driver) {
 				try {
 					return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
@@ -291,7 +290,6 @@ public class BasePage {
 			}
 		};
 		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
-			@Override
 			public Boolean apply(WebDriver driver) {
 				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
 			}
@@ -303,14 +301,14 @@ public class BasePage {
 		return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", getWebElement(driver, xpathExpression));
 	}
 
-	public boolean isImageLoaded(WebDriver driver, String xpathExpression) {
-		boolean status = (boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, xpathExpression));
-		if (status) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+//	public boolean isImageLoaded(WebDriver driver, String xpathExpression) {
+//		boolean status = (boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, xpathExpression));
+//		if (status) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 
 	public void waitForElementVisible(WebDriver driver, String xpathExpression) {
 		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(xpathExpression)));
