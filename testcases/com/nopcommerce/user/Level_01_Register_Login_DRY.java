@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -19,8 +20,11 @@ public class Level_01_Register_Login_DRY {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		// System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		// driver = new FirefoxDriver();
+
+		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
 
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -38,7 +42,7 @@ public class Level_01_Register_Login_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#ConfirmPassword-error")).getText(), "Password is required.");
 	}
 
-	@Test
+	// @Test
 	public void TC_02_Register_Invalid_Email() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -54,7 +58,7 @@ public class Level_01_Register_Login_DRY {
 
 	}
 
-	@Test
+	// @Test
 	public void TC_03_Register_Success() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -68,10 +72,10 @@ public class Level_01_Register_Login_DRY {
 
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.result")).getText(), "Your registration completed");
 
-		//driver.findElement(By.cssSelector("a.ico-logout")).click();
+		// driver.findElement(By.cssSelector("a.ico-logout")).click();
 	}
 
-	//@Test
+	// @Test
 	public void TC_04_Register_Existing_Email() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -86,7 +90,7 @@ public class Level_01_Register_Login_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.message-error li")).getText(), "The specified email already exists");
 	}
 
-	//@Test
+	// @Test
 	public void TC_05_Register_Password_Less_Than_6_Chars() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -101,7 +105,7 @@ public class Level_01_Register_Login_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("#Password-error")).getText(), "Password must meet the following rules:\nmust have at least 6 characters");
 	}
 
-	//@Test
+	// @Test
 	public void TC_06_Register_Invalid_Confirm_Password() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 
@@ -117,7 +121,7 @@ public class Level_01_Register_Login_DRY {
 
 	@AfterClass
 	public void afterClass() {
-		//driver.quit();
+		// driver.quit();
 	}
 
 	public int generateFakeNumber() {

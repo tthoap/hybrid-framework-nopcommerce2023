@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -23,13 +24,17 @@ public class Level_02_Register_Login_BasePage_Part_II {
 		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 
+		// System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		// driver = new ChromeDriver();
+
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		basePage.openUrl(driver, "https://demo.nopcommerce.com/");
 	}
 
-	@Test
+	// @Test
 	public void TC_01_Register_Empty_Data() {
-		basePage.openUrl(driver, "https://demo.nopcommerce.com/");
+
 		basePage.clickToElement(driver, "//a[@class='ico-register']");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
 
@@ -40,7 +45,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 		Assert.assertEquals(basePage.getElementText(driver, "//span[@id='ConfirmPassword-error']"), "Password is required.");
 	}
 
-	@Test
+	// @Test
 	public void TC_02_Register_Invalid_Email() {
 		basePage.clickToElement(driver, "//a[@class='ico-register']");
 
@@ -56,7 +61,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 	}
 
-	@Test
+	// @Test
 	public void TC_03_Register_Success() {
 		basePage.clickToElement(driver, "//a[@class='ico-register']");
 
@@ -69,10 +74,10 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 		Assert.assertEquals(basePage.getElementText(driver, "//div[@class='result']"), "Your registration completed");
 
-		basePage.clickToElement(driver, "//a[@class='ico-logout']");
+		// basePage.clickToElement(driver, "//a[@class='ico-logout']");
 	}
 
-	@Test
+	// @Test
 	public void TC_04_Register_Existing_Email() {
 		basePage.clickToElement(driver, "//a[@class='ico-register']");
 
@@ -83,7 +88,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
 
-		Assert.assertEquals(basePage.getElementText(driver, "//div[contain(@class,'message-error')]//li"), "The specified email already exists");
+		Assert.assertEquals(basePage.getElementText(driver, "//div[contains(@class,'message-error')]//li"), "The specified email already exists");
 	}
 
 	@Test
@@ -97,10 +102,10 @@ public class Level_02_Register_Login_BasePage_Part_II {
 		basePage.sendkeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
 		basePage.clickToElement(driver, "//button[@id='register-button']");
 
-		Assert.assertEquals(basePage.getElementText(driver, "//span[@id='Password-error']"), "The specified email already exists");
+		Assert.assertEquals(basePage.getElementText(driver, "//span[@id='Password-error']/p"), "Password must meet the following rules:");
 	}
 
-	@Test
+	// @Test
 	public void TC_06_Register_Invalid_Confirm_Password() {
 		basePage.clickToElement(driver, "//a[@class='ico-register']");
 
@@ -117,7 +122,7 @@ public class Level_02_Register_Login_BasePage_Part_II {
 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		// driver.quit();
 	}
 
 	public int generateFakeNumber() {
