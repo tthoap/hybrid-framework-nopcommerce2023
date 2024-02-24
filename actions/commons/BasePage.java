@@ -319,7 +319,7 @@ public class BasePage {
 	}
 
 	public void waitForElementClickable(WebDriver driver, String xpathExpression) {
-		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.elementToBeSelected(getByXpath(xpathExpression)));
+		new WebDriverWait(driver, longTimeout).until(ExpectedConditions.elementToBeClickable(getByXpath(xpathExpression)));
 	}
 
 	public void waitForAllElementVisible(WebDriver driver, String xpathExpression) {
