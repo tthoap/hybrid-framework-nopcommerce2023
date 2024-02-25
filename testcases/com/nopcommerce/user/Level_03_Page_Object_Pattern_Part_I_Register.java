@@ -15,7 +15,7 @@ import commons.BasePage;
 import pageObjects.HomePageObject;
 import pageObjects.RegisterPageObject;
 
-public class Level_03_Page_Object_Pattern_Part_I extends BasePage {
+public class Level_03_Page_Object_Pattern_Part_I_Register extends BasePage {
 	private WebDriver driver;
 	private String emailAddress;
 	//Khai báo
@@ -85,6 +85,7 @@ public class Level_03_Page_Object_Pattern_Part_I extends BasePage {
 		registerPage.sendKeyToPasswordTextbox("123456");
 		registerPage.sendKeyToConfirmPasswordTextbox("123456");
 		registerPage.clickToRegisterButton();
+		
 		
 
 		Assert.assertEquals(registerPage.getRegisteredSuccessMessage(), "Your registration completed");

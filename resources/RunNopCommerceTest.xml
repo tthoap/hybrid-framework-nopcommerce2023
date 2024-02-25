@@ -4,8 +4,7 @@
 	<test name="Run on Firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_01_Register_Login_DRY" />
-			<class name="com.nopcommerce.user.Level_02_Register_Login_BasePage_Part_I" />
+			<class name="com.nopcommerce.user.Level_03_Page_Object_Pattern_Part_I_Login" />
 			
 		</classes>
 	</test> <!-- Test -->
