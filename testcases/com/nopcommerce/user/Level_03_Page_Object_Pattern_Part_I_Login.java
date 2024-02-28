@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,8 +28,8 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 
 	@BeforeClass
 	public void beforeClass() {
-		 System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		 driver = new FirefoxDriver();
+		 System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
+		 driver = new EdgeDriver();
 		System.out.println("Driver ID at Test class = " + driver.toString());
 		
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";

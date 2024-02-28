@@ -1,56 +1,38 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import commons.BasePage;
+import commons.BaseTest;
 import pageObjects.HomePageObject;
 import pageObjects.RegisterPageObject;
 
-public class Level_03_Page_Object_Pattern_Part_I_Register extends BasePage {
+public class Level_04_Multiple_Browser extends BaseTest {
 	private WebDriver driver;
 	private String emailAddress;
 	//Khai báo
 	private HomePageObject homePage;
 	private RegisterPageObject registerPage;
-	String projectPath = System.getProperty("user.dir");
 
+	@Parameters("browser")
 	@BeforeClass
-	public void beforeClass() {
-		 System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		 driver = new FirefoxDriver();
-
-//		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
-//		driver = new ChromeDriver();
-		System.out.println("Driver ID at Test class = " + driver.toString());
-		
+	public void beforeClass(String browserName) {
+		driver = getBrowserDriver(browserName);
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		
-		//1 - Mở url ra thì nó sẽ mở ra trang home page(Business page)
-		driver.get("https://demo.nopcommerce.com/"); 
-		driver.manage().window().maximize();
-		//Khởi tạo page
 		homePage = new HomePageObject(driver);
 	}
 
 	@Test
 	public void TC_01_Register_Empty_Data() {
-		// 2 - Từ Home page click vào Register link sẽ mở ra trang register page (business page)
 		homePage.clickToRegisterLink();
-		sleepInSecond(3);
 		registerPage = new RegisterPageObject(driver);
-		
 		registerPage.clickToRegisterButton();
-
 		Assert.assertEquals(registerPage.getFirstNameErrorMessage(), "First name is required.");
 		Assert.assertEquals(registerPage.getLastNameErrorMessage(), "Last name is required.");
 		Assert.assertEquals(registerPage.getEmailErrorMessage(), "Email is required.");
