@@ -18,7 +18,6 @@ public class BaseTest {
 		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 		
 		if (browser == BrowserList.FIREFOX) {
-			//tự động tải về ko care version, ko care Firefox
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browser == BrowserList.CHROME) {
