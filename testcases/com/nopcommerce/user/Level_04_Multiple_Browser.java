@@ -20,10 +20,10 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	private HomePageObject homePage;
 	private RegisterPageObject registerPage;
 
-	@Parameters("browser")
+	@Parameters({"browser", "url"})
 	@BeforeClass
-	public void beforeClass(String browserName) {
-		driver = getBrowserDriver(browserName);
+	public void beforeClass(String browserName, String url) {
+		driver = getBrowserDriver(browserName, url);
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";
 		homePage = new HomePageObject(driver);
 	}

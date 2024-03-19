@@ -14,7 +14,7 @@ public class BaseTest {
 	private String projectPath = System.getProperty("user.dir");
 
 	
-	protected WebDriver getBrowserDriver(String browserName) {
+	protected WebDriver getBrowserDriver(String browserName, String url) {
 		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 		
 		if (browser == BrowserList.FIREFOX) {
@@ -31,7 +31,7 @@ public class BaseTest {
 		}
 		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/"); 
+		driver.get(url); 
 		driver.manage().window().maximize();
 		return driver;
 	}

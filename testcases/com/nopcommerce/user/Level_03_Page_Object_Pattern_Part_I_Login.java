@@ -76,7 +76,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		homePage.clickToLoginLink();
 		loginPage = new LoginPageObject(driver);
 		
-		loginPage.sendKeyToEmailTextBox("abc");
+		loginPage.inputToEmailTextBox("abc");
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getEmailErrorMessage(), "Wrong email");
 		
@@ -87,7 +87,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		homePage.clickToLoginLink();
 		loginPage = new LoginPageObject(driver);
 		
-		loginPage.sendKeyToEmailTextBox(notFoundEmaill);
+		loginPage.inputToEmailTextBox(notFoundEmaill);
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getErrorMessageUnsuccessful(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
 		
@@ -98,7 +98,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		homePage.clickToLoginLink();
 		loginPage = new LoginPageObject(driver);
 		
-		loginPage.sendKeyToEmailTextBox(emailAddress);
+		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getErrorMessageUnsuccessful(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 		
@@ -109,8 +109,8 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		homePage.clickToLoginLink();
 		loginPage = new LoginPageObject(driver);
 		
-		loginPage.sendKeyToEmailTextBox(emailAddress);
-		loginPage.sendKeyToPasswordTextBox("123111");
+		loginPage.inputToEmailTextBox(emailAddress);
+		loginPage.inputToPasswordTextBox("123111");
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getErrorMessageUnsuccessful(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 		
@@ -121,8 +121,8 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		homePage.clickToLoginLink();
 		loginPage = new LoginPageObject(driver);
 		
-		loginPage.sendKeyToEmailTextBox(emailAddress);
-		loginPage.sendKeyToPasswordTextBox("123456");
+		loginPage.inputToEmailTextBox(emailAddress);
+		loginPage.inputToPasswordTextBox("123456");
 		loginPage.clickToLoginButton();
 		
 		homePage = new HomePageObject(driver);
