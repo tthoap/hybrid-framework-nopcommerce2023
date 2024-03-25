@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class LoginPageUI {
+public class UserLoginPageUI {
 	public static final String LOGIN_BUTTON = "//button[text()='Log in']";
 	public static final String EMAIL_ERROR_MESSAGE = "//span[@id='Email-error']";
 	public static final String EMAIL_TEXTBOX = "//input[@id='Email']";

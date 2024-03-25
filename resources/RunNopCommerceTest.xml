@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="NopCommerce">
+<suite parallel="false" name="NopCommerce">
 
-	<parameter name = "url" value ="https://demo.nopcommerce.com"/>
-	
+	<parameter name="url" value="https://demo.nopcommerce.com" />
+
 	<test name="Run on Firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_07_Switch_Page" />
+			<class name="com.nopcommerce.user.Level_08_Switch_Role_User" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 
 
 </suite> <!-- Suite -->

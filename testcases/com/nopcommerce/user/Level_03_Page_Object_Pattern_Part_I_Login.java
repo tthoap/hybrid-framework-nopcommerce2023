@@ -12,17 +12,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserRegisterPageObject;
 
 public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	private WebDriver driver;
 	private String emailAddress, notFoundEmaill;
 	//Khai báo
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 	
 	String projectPath = System.getProperty("user.dir");
 
@@ -38,11 +38,11 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		
 		driver.get("https://demo.nopcommerce.com/"); 
 		driver.manage().window().maximize();
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		
 		System.out.println("Pre-condition - Step 01 : Click to Register link:");
 		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Pre-condition - Step 02 : Input the required fields");
 		registerPage.sendKeyToFirstNameTextbox("Automation");
@@ -57,14 +57,14 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 		System.out.println("Pre-condition - Step 04 : Verify success message displayed");
 		Assert.assertEquals(registerPage.getRegisteredSuccessMessage(), "Your registration completed");
 		registerPage.clickToContinueButton();
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		
 	}
 
 	@Test
 	public void TC_01_Login_With_Empty_Data() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getEmailErrorMessage(), "Please enter your email");
@@ -74,7 +74,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	@Test
 	public void TC_02_Login_With_Invalid_Email() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox("abc");
 		loginPage.clickToLoginButton();
@@ -85,7 +85,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	@Test
 	public void TC_03_Login_With_Unregistered_Email() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox(notFoundEmaill);
 		loginPage.clickToLoginButton();
@@ -96,7 +96,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	@Test
 	public void TC_04_Login_With_Registered_Email_Without_Password() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.clickToLoginButton();
@@ -107,7 +107,7 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	@Test
 	public void TC_05_Login_With_Registered_Email_Wrong_Password() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.inputToPasswordTextBox("123111");
@@ -119,13 +119,13 @@ public class Level_03_Page_Object_Pattern_Part_I_Login extends BasePage {
 	@Test
 	public void TC_06_Login_With_Registered_Email_Correct_Password() {
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.inputToPasswordTextBox("123456");
 		loginPage.clickToLoginButton();
 		
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		Assert.assertTrue(homePage.isLogoutLinkDisplayed());
 	}

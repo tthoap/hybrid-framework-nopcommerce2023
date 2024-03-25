@@ -10,17 +10,17 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.user.UserCustomerInfoPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserRegisterPageObject;
 
 public class Level_06_Page_Generator_Manager_PartI extends BaseTest {
 	private WebDriver driver;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
-	private CustomerInfoPageObject customerInfoPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
+	private UserCustomerInfoPageObject customerInfoPage;
 	private String firstName, lastName, emailAddress, password;
 
 	@Parameters({"browser", "url"})
@@ -29,7 +29,7 @@ public class Level_06_Page_Generator_Manager_PartI extends BaseTest {
 		//1-Mở Url ra thì nó sẽ mở ra Home page, (Business page)
 		driver = getBrowserDriver(browserName, url);
 
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 
 		firstName = "John";
 		lastName = "Henry";
@@ -41,7 +41,7 @@ public class Level_06_Page_Generator_Manager_PartI extends BaseTest {
 	public void User_01_Register_To_System() {
 		//2- Từ Home page click vào Register link sẽ chuyển vào Register page
 		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 
 		registerPage.sendKeyToFirstNameTextbox(firstName);
 		registerPage.sendKeyToLastNameTextbox(lastName);
@@ -53,28 +53,28 @@ public class Level_06_Page_Generator_Manager_PartI extends BaseTest {
 
 		//3- Từ Register page click continue sẽ chuyển lại Home Page
 		registerPage.clickToContinueButton();
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 	}
 
 	@Test
 	public void User_02_Login_To_System() {
 		//4- Từ HOme page chuyển về Login page
 		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.inputToPasswordTextBox(password);
 		
 		//5- Từ Login Page chuyển về Home Page
 		loginPage.clickToLoginButton();
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 	}
 
 	@Test
 	public void User_03_My_Account_Info() {
 		//6- Từ Home page chuyển về Customer Info page
 		homePage.clickToMyAccountLink();
-		customerInfoPage = new CustomerInfoPageObject(driver);
+		customerInfoPage = new UserCustomerInfoPageObject(driver);
 		Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(), firstName);
 		Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(), lastName);
 		Assert.assertEquals(customerInfoPage.getEmailTextboxValue(), emailAddress);
