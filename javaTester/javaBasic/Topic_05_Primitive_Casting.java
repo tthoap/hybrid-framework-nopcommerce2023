@@ -1,5 +1,10 @@
 package javaBasic;
 
+import javax.swing.text.Document;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 public class Topic_05_Primitive_Casting {
 
 	public static void main(String[] args) {
@@ -42,7 +47,10 @@ public class Topic_05_Primitive_Casting {
 		byte bNumber = (byte) iNumber;
 		System.out.println(bNumber);
 		
-
+		WebDriver  driver = null;
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		String homePageTitle = (String) jsExecutor.executeScript("return document.title");
+		
 	}
 
 }
